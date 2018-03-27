@@ -97,13 +97,3 @@ module PrioTicket
   end
 
 end
-
-
-
-
-# docs:
-# WNYE9On0Jqn/fivlUVgeyeYckLubVqxJ5mryhfBOfKk=
-
-
-# real:
-# OTU3IqrnoXVn5QvUsZIoTfKIyOEzOo9BFmWFQFtZbHk=

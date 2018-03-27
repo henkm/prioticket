@@ -7,6 +7,8 @@ This gem works as a simple Ruby wrapper for the PrioTicket API. All the API func
 
 Instead of working with JSON, you work with Ruby Classes and intuitive methods.
 
+**This gem communicates with the API Version 2.4.** 
+
 ## Installation
 
 Add this line to your application's Gemfile:
