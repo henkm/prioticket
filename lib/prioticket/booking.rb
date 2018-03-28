@@ -165,8 +165,11 @@ module PrioTicket
       if ticket
         if [2,3].include?(ticket.ticket_class)
           unless booking_type.from_date_time && booking_type.to_date_time
-            err_msg = "The `booking_type` attribute requires a from_date_time and to_date_time for a ticket of ticket_class #{ticket.ticket_class}."
-            raise PrioTicketError.new(err_msg)
+            unless booking_type.reservation_reference && booking_type.reservation_reference != ''
+              puts booking_type.inspect
+              err_msg = "The `booking_type` attribute requires a from_date_time and to_date_time for a ticket of ticket_class #{ticket.ticket_class}."
+              raise PrioTicketError.new(err_msg)
+            end
           end
         end
       end

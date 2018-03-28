@@ -1,6 +1,6 @@
 require "spec_helper"
 
-context 'Reservation', focus: true do
+context 'Reservation' do
   before(:all) do
     PrioTicket.set_credentials_from_environment
     @id = "test-#{Time.now.to_i}"

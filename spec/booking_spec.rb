@@ -208,6 +208,7 @@ describe 'Booking' do
       end
 
       it "saves a booking with only a reservation_reference" do
+        @booking.booking_name = nil
         @booking.booking_type.ticket_id = nil
         @booking.booking_type.booking_details = nil
         @booking.booking_type.reservation_reference = @reservation.reservation_reference
