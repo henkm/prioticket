@@ -34,6 +34,12 @@ module PrioTicket
     end
 
 
+    def cancelled
+      booking_status == "Cancelled" || cancellation_date_time
+    end
+    alias_method :cancelled?, :success
+
+
     # 
     # Sends the reservation request tot the API
     # 
@@ -48,6 +54,17 @@ module PrioTicket
     def cancel
       result = PrioTicket::API.call(cancel_request_body, identifier)
       parse_result(result)
+    end
+
+    def self.cancel(distributor_id: nil, reservation_reference: nil, distributor_reference: nil, identifier: nil)
+      reservation = PrioTicket::Reservation.new(
+        distributor_id: distributor_id,
+        reservation_reference: reservation_reference,
+        distributor_reference: distributor_reference,
+        identifier: identifier
+      )
+      reservation.cancel
+      return reservation  
     end
 
     private

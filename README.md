@@ -113,6 +113,16 @@ To reserve a date, use the `PrioTicket::Reservation` class:
 @reservation.booking_status #=> "Cancelled"
 ```
 
+A direct way to cancel a reservation, is to call the class method `.cancel`:
+```ruby
+PrioTicket::Reservation.cancel(
+  distributor_id: 1234, 
+  reservation_reference: "YYY2067115376XXX",
+  distributor_reference: "TEST_RESERVATION", 
+  identifier: "my-unique-order-abc-123"
+)
+```
+
 ### Booking
 To make a booking, please take note of the official API Documentation: for tickets of type_2 and type_3, a `from_date_time` and `to_date_time` must be present. 
 

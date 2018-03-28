@@ -43,8 +43,8 @@ module PrioTicket
     if date.is_a?(String)
       date
     elsif [DateTime, Time].include?(date.class)
-      date.strftime(expected_date_format)
-      # date.strftime('%Y-%m-%d')
+      # date.strftime(expected_date_format)
+      date.strftime('%Y-%m-%d')
     end
   end
 
