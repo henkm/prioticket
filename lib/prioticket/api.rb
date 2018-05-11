@@ -35,7 +35,7 @@ module PrioTicket
       step_2_string = step_1_string.encode('utf-8')
 
       # 3. Compute the SHA-256 hash for the byte array from step 2. The result will be a byte array.
-      step_3_string = Digest::SHA256.digest(step_2_string).strip
+      step_3_string = Digest::SHA256.digest(step_2_string)
       
       # 4. Base64 encode the byte array as computed in step 3. 
       #    This string will be the x-request-authentication key for this request.
@@ -43,6 +43,7 @@ module PrioTicket
 
       return step_4_string
     end
+    Base64.encode64(Digest::SHA256.digest("4d07aa49a1ce9571cbd66d6383e65d46151272:PK1-MN2U-RS27-SWX").strip).strip
 
     # 
     # Computes the request header

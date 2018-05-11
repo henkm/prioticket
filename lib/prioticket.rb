@@ -79,17 +79,24 @@ module PrioTicket
       is_integer    = !!Integer(v) rescue false
       is_float      = !!Float(v) rescue false
       is_date_time  = !!DateTime.strptime(v, expected_date_format) rescue false
+      puts "#{k} (#{v})"
       if ["true", "false"].include?(v)
+        puts "is boolean"
         val = (v == 'true')
-      elsif is_integer
-        val = v.to_i
       elsif is_date_time
+        puts "is date_time"
         val = DateTime.strptime(v, expected_date_format)
+      elsif is_integer
+        puts "is integer"
+        val = v.to_i
       elsif is_float
+        puts "is integer"
         val = v.to_f
       elsif [Hash, Array].include?(v.class)
+        puts "is hash or array"
         val = JSON.parse(v.to_json, object_class: OpenStruct)
       else
+        puts "is undefined class"
         val = v
       end
       obj.instance_variable_set("@#{k}", val)
