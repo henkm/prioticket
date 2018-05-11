@@ -43,7 +43,6 @@ module PrioTicket
 
       return step_4_string
     end
-    Base64.encode64(Digest::SHA256.digest("4d07aa49a1ce9571cbd66d6383e65d46151272:PK1-MN2U-RS27-SWX").strip).strip
 
     # 
     # Computes the request header
