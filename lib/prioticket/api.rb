@@ -79,6 +79,10 @@ module PrioTicket
       raise PrioTicketError.new "Request Identifier is not present, please provide an @identifier" if request_identifier.nil? || request_identifier == ''
       begin
         response = RestClient.post endpoint, values, headers
+        if verbose || PrioTicket::Config.verbose == true
+          puts "Response:"
+          puts response.body
+        end
       rescue RestClient::ExceptionWithResponse => e
         if verbose || PrioTicket::Config.verbose == true
           puts "Error: #{e.response}"

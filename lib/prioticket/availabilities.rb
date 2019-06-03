@@ -27,8 +27,11 @@ module PrioTicket
     # @param distributor_id Integer
     # @return Array
     def self.find(distributor_id: nil, ticket_id: nil, from_date: nil, until_date: nil, identifier: nil)
-      result = PrioTicket::API.call(request_body(ticket_id: ticket_id, distributor_id: distributor_id, from_date: from_date, until_date: until_date), identifier, false)
+      result = PrioTicket::API.call(request_body(ticket_id: ticket_id, distributor_id: distributor_id, from_date: from_date, to_date: until_date), identifier, false)
       list = []
+      if PrioTicket::Config.verbose
+        puts "Availablilities:\n#{result['data']}"
+      end
       for a in result["data"]["availabilities"]
         list << Availabilities.new(a)
       end
@@ -43,14 +46,14 @@ module PrioTicket
     # @param until_date String
     # 
     # @return Hash
-    def self.request_body(distributor_id: nil, ticket_id: nil, from_date: nil, until_date: nil)
+    def self.request_body(distributor_id: nil, ticket_id: nil, from_date: nil, to_date: nil)
       {
         request_type: "availabilities",
         data: {
           distributor_id: distributor_id,
           ticket_id: ticket_id,
           from_date: PrioTicket.parsed_date(from_date),
-          until_date: PrioTicket.parsed_date(until_date)
+          to_date: PrioTicket.parsed_date(to_date)
         }
       }
     end
