@@ -95,8 +95,15 @@ module PrioTicket
       elsif [Hash, Array].include?(v.class)
         # puts "is hash or array"
         val = JSON.parse(v.to_json, object_class: OpenStruct)
-        if val.modifiable && val.table
-          val = JSON.parse(v.to_json)
+        begin
+          if val.modifiable && val.table
+            val = JSON.parse(v.to_json)
+          end
+        rescue
+
+        end
+        if val["table"] && val["modifiable"]
+          val = val["table"]
         end
       else
         # puts "is undefined class"
