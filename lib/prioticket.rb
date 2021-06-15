@@ -95,7 +95,7 @@ module PrioTicket
       elsif [Hash, Array].include?(v.class)
         # puts "is hash or array"
         val = JSON.parse(v.to_json, object_class: OpenStruct)
-        if val.modifiable && val.table
+        if k.include?("options")
           val = JSON.parse(v.to_json)
         end
       else
