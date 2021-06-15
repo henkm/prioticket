@@ -102,8 +102,11 @@ module PrioTicket
         rescue
 
         end
-        if val["table"] && val["modifiable"]
-          val = val["table"]
+        begin
+          if val["table"] && val["modifiable"]
+            val = val["table"]
+          end
+        rescue
         end
       else
         # puts "is undefined class"
